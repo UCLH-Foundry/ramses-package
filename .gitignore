@@ -8,3 +8,5 @@ Meta
 *.duckdb
 inst/doc
 docs
+data/OMOP
+.DS_Store
