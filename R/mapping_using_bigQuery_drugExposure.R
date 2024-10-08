@@ -5,8 +5,9 @@ library(readr)
 library(AMR)  # For drug name mapping
 
 # Load data from CSV files
-drug_exposure <- read_csv("./path/to/your/file/cleaned_drug_exposure.csv")
-concept <- read_csv("./path/to/your/file/cleaned_concept.csv")
+drug_exposure <- read_csv("../data/OMOP/cleaned_drug_exposure.csv")
+concept <- read_csv("../data/OMOP/cleaned_concept.csv")
+
 
 
 # Print the column names to check if they are correct
