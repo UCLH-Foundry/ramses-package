@@ -5,8 +5,8 @@ library(readr)
 library(AMR)  # For drug name mapping
 
 # Load data from CSV files
-drug_exposure <- read_csv("D:/RAMSES-Dev/cleaned_drug_exposure.csv")
-concept <- read_csv("D:/RAMSES-Dev/cleaned_concept.csv")
+drug_exposure <- read_csv("./path/to/your/file/cleaned_drug_exposure.csv")
+concept <- read_csv("./path/to/your/file/cleaned_concept.csv")
 
 
 # Print the column names to check if they are correct
@@ -92,7 +92,7 @@ validate_mapping <- function(df) {
 validate_mapping(omop_to_ramses)
 
 # Save the final mapped data to a CSV file
-write_csv(omop_to_ramses, "D:/RAMSES-Dev/mapped_drug_prescriptions.csv")
+write_csv(omop_to_ramses, "./path/to/your/file/mapped_drug_prescriptions.csv")
 
 # Print completion message
 message("Drug data has been processed and saved successfully.")
