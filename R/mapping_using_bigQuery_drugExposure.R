@@ -93,7 +93,8 @@ validate_mapping <- function(df) {
 validate_mapping(omop_to_ramses)
 
 # Save the final mapped data to a CSV file
-write_csv(omop_to_ramses, "./path/to/your/file/mapped_drug_prescriptions.csv")
+write_csv(omop_to_ramses, "../data/OMOP/mapped_drug_prescriptions.csv")
+
 
 # Print completion message
 message("Drug data has been processed and saved successfully.")
