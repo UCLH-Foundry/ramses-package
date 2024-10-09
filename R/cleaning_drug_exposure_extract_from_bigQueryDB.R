@@ -2,7 +2,7 @@
 library(readr)
 
 # Step 1: Read the drug exposure data
-drug_exposure <- read_delim("D:/RAMSES-Dev/drug_exposure.csv", delim = " ")
+drug_exposure <- read_delim("./path/to/your/file/uncleaned_drug_exposure.csv", delim = " ")
 
 # Step 2: Check the structure of the data
 str(drug_exposure)
@@ -19,7 +19,7 @@ colnames(drug_exposure) <- c(
   "drug_exposure_end_datetime", "verbatim_end_date"
 )
 
-# Step 4: Remove the first column
+# Step 4: Remove the first column (index values)
 drug_exposure <- drug_exposure[, -1]
 
 # Step 5: Add a new column with NA for 'verbatim_end_date'
@@ -29,4 +29,4 @@ drug_exposure$verbatim_end_date <- NA
 drug_exposure$drug_exposure_end_datetime[drug_exposure$drug_exposure_end_datetime == "NA NA"] <- NA
 
 # Step 7: Save the cleaned data to a CSV file
-write_csv(drug_exposure, "D:/RAMSES-Dev/cleaned_drug_exposure.csv")
+write_csv(drug_exposure, "./path/to/your/file/cleaned_drug_exposure.csv")
