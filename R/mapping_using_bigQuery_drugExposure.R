@@ -1,8 +1,7 @@
 # Load necessary libraries
-library(dplyr) # For data manipulation.
+library(dplyr) # For data manipulation
 library(DBI) # For establishing connection with Database
-library(readr) #To read and write CSV files.
-library(AMR)  # For drug name mapping
+library(readr) #To read and write CSV files
 library(AMR)  # For drug name mapping
 
 # Load data from CSV files
@@ -10,15 +9,14 @@ drug_exposure <- read_csv("../data/OMOP/cleaned_drug_exposure.csv")
 concept <- read_csv("../data/OMOP/cleaned_concept.csv")
 
 
-
 # Print the column names to check if they are correct
 print(colnames(concept))
 # Print the cleaned data to verify everything looks correct
 print(head(concept))
 
-
-# Ensure the relevant columns are available in drug_exposure
+# Print the column names to check if they are correct
 print(colnames(drug_exposure))
+# Print the cleaned data to verify everything looks correct
 print(head(drug_exposure))  
 
 
@@ -29,7 +27,8 @@ print(head(drug_exposure))
 #         -valid_start_date, -valid_end_date, -invalid_reason)
 
 #Mapping using left join
-#This block joins the drug_exposure table with the concept table based on matching drug_concept_id and #concept_id. After joining, it renames the concept_name column to drug_name for clarity and initialises a route #column with NA since the route_concept_id is missing in this dataset.
+#This block joins the drug_exposure table with the concept table based on matching drug_concept_id and concept_id. 
+#After joining, it renames the concept_name column to drug_name for clarity and initialises a route column with NA since the route_concept_id is missing in this dataset.
 drug_exposure <- drug_exposure %>%
   left_join(concept, by = c("drug_concept_id" = "concept_id")) %>%
   rename(drug_name = concept_name) %>%  # Rename concept_name to drug_name
@@ -80,7 +79,7 @@ omop_to_ramses_drug_prescriptions <- drug_exposure %>%
   )
 
 # Display the final mapped data from OMOP to RAMSES
-print(omop_to_ramses)
+print(omop_to_ramses_drug_prescriptions)
 
 # Validation function for checking mappings
 validate_mapping <- function(df) {
@@ -93,10 +92,10 @@ validate_mapping <- function(df) {
 }
 
 # Run the validation function
-validate_mapping(omop_to_ramses)
+validate_mapping(omop_to_ramses_drug_prescriptions)
 
 # Save the final mapped data to a CSV file
-write_csv(omop_to_ramses, "../data/OMOP/mapped_drug_prescriptions.csv")
+write_csv(omop_to_ramses_drug_prescriptions, "../data/OMOP/mapped_drug_prescriptions.csv")
 
 
 # Print completion message
@@ -108,7 +107,7 @@ message("Drug data has been processed and saved successfully.")
 #ramses_db <- DBI::dbConnect(RSQLite::SQLite(), dbname = "ramses-db.duckdb")
 
 # Load the data into the Ramses database
-#DBI::dbWriteTable(ramses_db, "drug_prescriptions", omop_to_ramses, overwrite = TRUE)
+#DBI::dbWriteTable(ramses_db, "drug_prescriptions", omop_to_ramses_drug_prescriptions, overwrite = TRUE)
 
 # Verify the data was loaded correctly
 #loaded_data <- DBI::dbReadTable(ramses_db, "drug_prescriptions")
