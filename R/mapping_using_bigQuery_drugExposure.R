@@ -49,7 +49,7 @@ if ("dose_unit_source_value" %in% colnames(drug_exposure)) {
 }
 
 # Map drug_exposure fields to RAMSES fields
-omop_to_ramses <- drug_exposure %>%
+omop_to_ramses_drug_prescriptions <- drug_exposure %>%
   transmute(
     # Mapping OMOP person_id to RAMSES patient_id
     patient_id = person_id,
