@@ -29,10 +29,12 @@ print(head(drug_exposure))
 #         -valid_start_date, -valid_end_date, -invalid_reason)
 
 #Mapping using left join
+#This block joins the drug_exposure table with the concept table based on matching drug_concept_id and #concept_id. After joining, it renames the concept_name column to drug_name for clarity and initialises a route #column with NA since the route_concept_id is missing in this dataset.
 drug_exposure <- drug_exposure %>%
   left_join(concept, by = c("drug_concept_id" = "concept_id")) %>%
   rename(drug_name = concept_name) %>%  # Rename concept_name to drug_name
   mutate(route = NA)  # Since route_concept_id is NA.
+
 
 # Remove unnecessary columns from concept table
 drug_exposure <- drug_exposure %>%
