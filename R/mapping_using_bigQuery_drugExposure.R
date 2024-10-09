@@ -1,7 +1,8 @@
 # Load necessary libraries
-library(dplyr)
-library(DBI)
-library(readr)
+library(dplyr) # For data manipulation.
+library(DBI) # For establishing connection with Database
+library(readr) #To read and write CSV files.
+library(AMR)  # For drug name mapping
 library(AMR)  # For drug name mapping
 
 # Load data from CSV files
