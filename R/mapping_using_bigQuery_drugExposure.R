@@ -20,11 +20,13 @@ print(colnames(drug_exposure))
 print(head(drug_exposure))  
 
 
+#This block has been commented out as 'route' column is NA and needed to add a line of code to assign route as NA. In the future, this block can be re-used instead of the uncommented one when we have another omop data extraction that has valid 'route' values. 
 #drug_exposure <- drug_exposure %>%
 #  left_join(concept, by = c("drug_concept_id" = "concept_id")) %>%
 #  rename(drug_name = concept_name) %>%
 #  select(-domain_id, -vocabulary_id, -concept_class_id, -standard_concept, -concept_code, 
 #         -valid_start_date, -valid_end_date, -invalid_reason)
+
 
 #Mapping using left join
 #This block joins the drug_exposure table with the concept table based on matching drug_concept_id and concept_id. 
