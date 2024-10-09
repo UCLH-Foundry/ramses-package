@@ -20,7 +20,8 @@ print(colnames(drug_exposure))
 print(head(drug_exposure))  
 
 
-#This block has been commented out as 'route' column is NA and needed to add a line of code to assign route as NA. In the future, this block can be re-used instead of the uncommented one when we have another omop data extraction that has valid 'route' values. 
+#This following block has been commented out as 'route' column is NA and needed to add a line of code to assign route as NA. 
+#In the future, this block can be re-used instead of the uncommented one when we have another omop data extraction that has valid 'route' values. 
 #drug_exposure <- drug_exposure %>%
 #  left_join(concept, by = c("drug_concept_id" = "concept_id")) %>%
 #  rename(drug_name = concept_name) %>%
@@ -28,8 +29,8 @@ print(head(drug_exposure))
 #         -valid_start_date, -valid_end_date, -invalid_reason)
 
 
-#Mapping using left join
-#This block joins the drug_exposure table with the concept table based on matching drug_concept_id and concept_id. 
+
+#This block left joins the drug_exposure table with the concept table based on matching drug_concept_id and concept_id. 
 #After joining, it renames the concept_name column to drug_name for clarity and initialises a route column with NA since the route_concept_id is missing in this dataset.
 drug_exposure <- drug_exposure %>%
   left_join(concept, by = c("drug_concept_id" = "concept_id")) %>%
@@ -104,6 +105,7 @@ write_csv(omop_to_ramses_drug_prescriptions, "../data/OMOP/mapped_drug_prescript
 message("Drug data has been processed and saved successfully.")
 
 
+#This block will be used when we save dataframe into DB table instead of CSV file.
 
 # Connect to local DuckDB database for Ramses
 #ramses_db <- DBI::dbConnect(RSQLite::SQLite(), dbname = "ramses-db.duckdb")
