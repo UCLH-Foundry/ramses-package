@@ -2,7 +2,8 @@
 library(readr)
 
 # Step 1: Read the drug exposure data
-drug_exposure <- read_delim("./path/to/your/file/uncleaned_drug_exposure.csv", delim = " ")
+drug_exposure <- read_delim("../data/OMOP/uncleaned_drug_exposure.csv", delim = " ")
+
 
 # Step 2: Check the structure of the data
 str(drug_exposure)
