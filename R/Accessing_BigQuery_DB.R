@@ -6,8 +6,10 @@
 library(bigrquery)
 library(DBI)
 library(gargle)
-
+# For instructions on creating a project and generating a key JSON file, 
+# please follow instructions: https://github.com/SAFEHR-data/ramses-package/issues/15
 # Step 2: Authenticate connection to BigQuery
+
 # Set the path to the service account key file
 sa_key_path <- "path/to/your/key_file"
 
