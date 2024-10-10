@@ -30,4 +30,5 @@ drug_exposure$verbatim_end_date <- NA
 drug_exposure$drug_exposure_end_datetime[drug_exposure$drug_exposure_end_datetime == "NA NA"] <- NA
 
 # Step 7: Save the cleaned data to a CSV file
-write_csv(drug_exposure, "./path/to/your/file/cleaned_drug_exposure.csv")
+write_csv(drug_exposure, "../data/OMOP/cleaned_drug_exposure.csv")
+
