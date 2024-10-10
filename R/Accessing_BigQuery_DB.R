@@ -37,7 +37,8 @@ result2 <- dbGetQuery(con, sql_string2)
 write.table(result1, file = "path/to/your/uncleaned_drug_exposure_file.csv", sep = ",", row.names = FALSE, quote = TRUE)
 
 # Save the concept query result to a CSV file
-write.table(result2, file = "path/to/your/uncleaned_concept_file.csv", sep = ",", row.names = FALSE, quote = TRUE)
+write.table(result2, file = "../data/OMOP/uncleaned_concept_file.csv", sep = ",", row.names = FALSE, quote = TRUE)
+
 
 # Close the connection to BigQuery
 dbDisconnect(con)
