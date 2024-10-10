@@ -8,7 +8,10 @@ drug_exposure <- read_delim("../data/OMOP/uncleaned_drug_exposure.csv", delim = 
 # Step 2: Check the structure of the data
 str(drug_exposure)
 
-# Step 3: Rename columns for clarity
+# Step 3: Remove the first column (index values)
+drug_exposure <- drug_exposure[, -1]
+
+# Step 4: Rename columns due to the removal of the first column in the previous step. This process is done due to the shift occurred in column values.
 colnames(drug_exposure) <- c(
   "drug_type_concept_id", "stop_reason", "refills", "quantity", 
   "days_supply", "sig", "route_concept_id", "lot_number", 
@@ -20,9 +23,6 @@ colnames(drug_exposure) <- c(
   "drug_exposure_end_datetime", "verbatim_end_date"
 )
 
-# Step 4: Remove the first column (index values)
-drug_exposure <- drug_exposure[, -1]
-
 # Step 5: Add a new column with NA for 'verbatim_end_date'
 drug_exposure$verbatim_end_date <- NA
 
@@ -31,4 +31,3 @@ drug_exposure$drug_exposure_end_datetime[drug_exposure$drug_exposure_end_datetim
 
 # Step 7: Save the cleaned data to a CSV file
 write_csv(drug_exposure, "../data/OMOP/cleaned_drug_exposure.csv")
-
