@@ -1,5 +1,7 @@
+# Please refer to '[Accessing_BigQuery_DB.R](https://github.com/SAFEHR-data/ramses-package/blob/Zsenousy/32-access-and-clean-data-tables-extracted-from-BigQuery-DB/R/Accessing_BigQuery_DB.R) to learn how to generate extract of drug_exposure and concept tables. The resulted data tables will be uncleaned and will require further cleaning as shown here in this script
 # Load necessary library
 library(readr)
+
 
 # Step 1: Read the drug exposure data
 drug_exposure <- read_delim("../data/OMOP/uncleaned_drug_exposure.csv", delim = " ")
