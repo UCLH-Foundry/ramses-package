@@ -154,12 +154,24 @@ generate_drug_exposure <- function(num_records = 100) {
 }
 
 
+#check current working directory
+if (basename(getwd()) == "ramses-package") {
+  wd_is_ramses <- TRUE
+} else {
+  wd_is_ramses <- FALSE
+}
+
+
 #Generate concept data
 concept_table <- generate_concept_table()
 
 print(concept_table)
 
-write_csv(concept_table, "../data/OMOP/generated_concept.csv", row.names = FALSE)
+if (wd_is_ramses) {
+  write.csv(concept_table, "data/OMOP/generated_concept.csv", row.names = FALSE)
+} else {
+  print("Please run this script from the ramses-package directory.")
+}
 
 # Generate drug exposure data
 drug_exposure_data <- generate_drug_exposure(100)
@@ -167,4 +179,10 @@ drug_exposure_data <- generate_drug_exposure(100)
 # Check the resulting drug exposure data
 print(drug_exposure_data)
 
-write_csv(drug_exposure_data, "../data/OMOP/generated_drug_exposure.csv", row.names = FALSE)
+
+# Write the drug exposure data to a CSV file
+if (wd_is_ramses) {
+  write.csv(drug_exposure_data, "data/OMOP/generated_drug_exposure.csv", row.names = FALSE)
+} else {
+  print("Please run this script from the ramses-package directory.")
+}
