@@ -159,7 +159,7 @@ concept_table <- generate_concept_table()
 
 print(concept_table)
 
-write_csv(concept_table, "../data/OMOP/generated_concept.csv")
+write_csv(concept_table, "../data/OMOP/generated_concept.csv", row.names = FALSE)
 
 # Generate drug exposure data
 drug_exposure_data <- generate_drug_exposure(100)
@@ -167,4 +167,4 @@ drug_exposure_data <- generate_drug_exposure(100)
 # Check the resulting drug exposure data
 print(drug_exposure_data)
 
-write_csv(drug_exposure_data, "../data/OMOP/generated_drug_exposure.csv")
+write_csv(drug_exposure_data, "../data/OMOP/generated_drug_exposure.csv", row.names = FALSE)
