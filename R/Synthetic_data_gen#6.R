@@ -1,6 +1,6 @@
 #This Script is used to Generate Synthetic Data for Drug_exposure and Concept tables:
 #Author: Zakaria Senousy (ARC - UCL)
-
+library(dplyr) 
 # Function to generate synthetic concept table
 generate_concept_table <- function() {
   # Generate synthetic concept table with full drug names and different routes
