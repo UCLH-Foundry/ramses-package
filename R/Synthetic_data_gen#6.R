@@ -1,12 +1,19 @@
 #This Script is used to Generate Synthetic Data for Drug_exposure and Concept tables:
 #Author: Zakaria Senousy (ARC - UCL)
 library(dplyr) 
+
+#check current working directory
+if (basename(getwd()) == "ramses-package") {
+  wd_is_ramses <- TRUE
+} else {
+  wd_is_ramses <- FALSE
+}
+
 # Function to generate synthetic concept table
 generate_concept_table <- function() {
   # Generate synthetic concept table with full drug names and different routes
   concept <- data.frame(
     concept_id = 1:20,
-    
     #Randomly generated drug_names
     concept_name = c(
       "Amoxicillin 250 MG Oral Capsule",            
@@ -45,6 +52,16 @@ generate_concept_table <- function() {
     valid_end_date = rep(as.Date("2023-12-31"), 20),   
     invalid_reason = rep("None", 20)                      
   )
+
+  # Load drug names from file if available
+  if (wd_is_ramses & file.exists("data/OMOP/Drug_Names.csv")) {
+      drug_names_sheet <- read.csv("data/OMOP/Drug_Names.csv")
+      concept_name = drug_names_sheet$Drug_Name
+      concept$concept_name = concept_name
+      print("Drug names loaded from file.")
+    } else {
+    print("Drug names loaded from hard coded randomly generated names.")
+    }
   
   return(concept)
 }
@@ -153,14 +170,29 @@ generate_drug_exposure <- function(num_records = 100) {
   return(drug_exposure)
 }
 
-
 #Generate concept data
 concept_table <- generate_concept_table()
 
+# Check the resulting concept data
 print(concept_table)
+
+# Write the concept data to a CSV file
+if (wd_is_ramses) {
+  write.csv(concept_table, "data/OMOP/generated_concept.csv", row.names = FALSE)
+} else {
+  print("Please run this script from the ramses-package directory.")
+}
 
 # Generate drug exposure data
 drug_exposure_data <- generate_drug_exposure(100)
 
 # Check the resulting drug exposure data
 print(drug_exposure_data)
+
+
+# Write the drug exposure data to a CSV file
+if (wd_is_ramses) {
+  write.csv(drug_exposure_data, "data/OMOP/generated_drug_exposure.csv", row.names = FALSE)
+} else {
+  print("Please run this script from the ramses-package directory.")
+}
